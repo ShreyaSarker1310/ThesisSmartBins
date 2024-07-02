@@ -1,0 +1,1 @@
+-O3 -DNDEBUG=1 -ffp-contract=off   -MMD -MP -MF .d  -fPIC  -fno-omit-frame-pointer -DHAVE_SWAPCONTEXT -DWITH_MPI -DWITH_QTENV -DWITH_PARSIM -DWITH_NETBUILDER -DWITH_LIBXML -DWITH_OSG -DOMNETPPLIBS_IMPORT  -I. -I/home/aung/.wasmedge/include -I/home/aung/omnetpp-6.0.3/include
