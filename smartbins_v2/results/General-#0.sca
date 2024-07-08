@@ -1,0 +1,653 @@
+version 3
+run General-0-20240708-15:36:06-1117703
+attr configname General
+attr datetime 20240708-15:36:06
+attr datetimef 20240708-153606
+attr experiment General
+attr inifile smartBinNetwork.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network SmartBinNetwork
+attr processid 1117703
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config network SmartBinNetwork
+
+par SmartBinNetwork.CSE_mn_1.ae$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_1.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_1.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_1.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.ae$o[1].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[1].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[1].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_2.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_2.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_2.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.ae$o[2].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[2].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[2].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_3.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_3.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_3.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.ae$o[3].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[3].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[3].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_4.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_4.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_4.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.ae$o[4].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[4].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[4].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_5.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_5.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_5.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.ae$o[5].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[5].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[5].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_6.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_6.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_6.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.ae$o[6].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[6].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[6].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_7.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_7.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_7.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.ae$o[7].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.ae$o[7].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.ae$o[7].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_8.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_8.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_8.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_9.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_9.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_9.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[1].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[1].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[1].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_10.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_10.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_10.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[2].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[2].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[2].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_11.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_11.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_11.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[3].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[3].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[3].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_12.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_12.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_12.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[4].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[4].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[4].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_13.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_13.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_13.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[5].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[5].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[5].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_14.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_14.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_14.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[6].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[6].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[6].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_15.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_15.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_15.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.ae$o[7].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.ae$o[7].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.ae$o[7].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_16.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_16.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_16.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_17.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_17.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_17.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[1].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[1].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[1].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_18.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_18.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_18.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[2].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[2].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[2].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_19.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_19.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_19.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[3].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[3].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[3].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_20.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_20.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_20.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[4].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[4].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[4].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_21.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_21.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_21.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[5].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[5].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[5].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_22.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_22.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_22.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[6].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[6].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[6].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_23.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_23.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_23.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.ae$o[7].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.ae$o[7].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.ae$o[7].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_24.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_24.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_24.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_25.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_25.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_25.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[1].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[1].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[1].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_26.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_26.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_26.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[2].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[2].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[2].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_27.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_27.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_27.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[3].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[3].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[3].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_28.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_28.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_28.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[4].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[4].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[4].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_29.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_29.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_29.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[5].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[5].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[5].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_30.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_30.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_30.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[6].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[6].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[6].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_31.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_31.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_31.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.ae$o[7].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.ae$o[7].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.ae$o[7].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_32.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sb_32.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sb_32.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.ae$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.ae$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.ae$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_st_1.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_st_1.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_st_1.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.ae$o[1].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.ae$o[1].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.ae$o[1].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_st_2.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_st_2.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_st_2.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.ae$o[2].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.ae$o[2].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.ae$o[2].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_st_3.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_st_3.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_st_3.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.ae$o[3].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.ae$o[3].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.ae$o[3].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_st_4.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_st_4.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_st_4.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.ae$o[4].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.ae$o[4].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.ae$o[4].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sw_1.cse$o.channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.AE_sw_1.cse$o.channel disabled false
+attr mutable ""
+par SmartBinNetwork.AE_sw_1.cse$o.channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_1.provider$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_1.provider$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_1.provider$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.customer$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.customer$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.customer$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_2.provider$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_2.provider$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_2.provider$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.customer$o[1].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.customer$o[1].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.customer$o[1].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_3.provider$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_3.provider$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_3.provider$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.customer$o[2].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.customer$o[2].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.customer$o[2].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_mn_4.provider$o[0].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_mn_4.provider$o[0].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_mn_4.provider$o[0].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.CSE_in_1.customer$o[3].channel typename "\"SmartBinNetwork.Channel\""
+par SmartBinNetwork.CSE_in_1.customer$o[3].channel disabled false
+attr mutable ""
+par SmartBinNetwork.CSE_in_1.customer$o[3].channel delay 0.1s
+attr mutable ""
+attr unit s
+par SmartBinNetwork.AE_sb_1 typename "\"AE\""
+par SmartBinNetwork.AE_sb_1 aeType 0
+par SmartBinNetwork.AE_sb_2 typename "\"AE\""
+par SmartBinNetwork.AE_sb_2 aeType 0
+par SmartBinNetwork.AE_sb_3 typename "\"AE\""
+par SmartBinNetwork.AE_sb_3 aeType 0
+par SmartBinNetwork.AE_sb_4 typename "\"AE\""
+par SmartBinNetwork.AE_sb_4 aeType 0
+par SmartBinNetwork.AE_sb_5 typename "\"AE\""
+par SmartBinNetwork.AE_sb_5 aeType 0
+par SmartBinNetwork.AE_sb_6 typename "\"AE\""
+par SmartBinNetwork.AE_sb_6 aeType 0
+par SmartBinNetwork.AE_sb_7 typename "\"AE\""
+par SmartBinNetwork.AE_sb_7 aeType 0
+par SmartBinNetwork.AE_sb_8 typename "\"AE\""
+par SmartBinNetwork.AE_sb_8 aeType 0
+par SmartBinNetwork.CSE_mn_1 typename "\"CSE\""
+par SmartBinNetwork.CSE_mn_1 notification_depth 8
+par SmartBinNetwork.CSE_mn_1 alpha 0
+par SmartBinNetwork.CSE_mn_1 beta 1
+par SmartBinNetwork.CSE_mn_1 delta 1
+par SmartBinNetwork.CSE_mn_1 gamma 1
+par SmartBinNetwork.CSE_mn_1 queryBufferTTL 2
+par SmartBinNetwork.CSE_mn_1 maxHops 10
+par SmartBinNetwork.CSE_mn_1 delayTime 0
+scalar SmartBinNetwork.CSE_mn_1 throughput:last nan
+attr recordingmode last
+attr source packet_size
+attr title "total_number_of_packets, last"
+par SmartBinNetwork.AE_sb_9 typename "\"AE\""
+par SmartBinNetwork.AE_sb_9 aeType 0
+par SmartBinNetwork.AE_sb_10 typename "\"AE\""
+par SmartBinNetwork.AE_sb_10 aeType 0
+par SmartBinNetwork.AE_sb_11 typename "\"AE\""
+par SmartBinNetwork.AE_sb_11 aeType 0
+par SmartBinNetwork.AE_sb_12 typename "\"AE\""
+par SmartBinNetwork.AE_sb_12 aeType 0
+par SmartBinNetwork.AE_sb_13 typename "\"AE\""
+par SmartBinNetwork.AE_sb_13 aeType 0
+par SmartBinNetwork.AE_sb_14 typename "\"AE\""
+par SmartBinNetwork.AE_sb_14 aeType 0
+par SmartBinNetwork.AE_sb_15 typename "\"AE\""
+par SmartBinNetwork.AE_sb_15 aeType 0
+par SmartBinNetwork.AE_sb_16 typename "\"AE\""
+par SmartBinNetwork.AE_sb_16 aeType 0
+par SmartBinNetwork.CSE_mn_2 typename "\"CSE\""
+par SmartBinNetwork.CSE_mn_2 notification_depth 8
+par SmartBinNetwork.CSE_mn_2 alpha 0
+par SmartBinNetwork.CSE_mn_2 beta 1
+par SmartBinNetwork.CSE_mn_2 delta 1
+par SmartBinNetwork.CSE_mn_2 gamma 1
+par SmartBinNetwork.CSE_mn_2 queryBufferTTL 2
+par SmartBinNetwork.CSE_mn_2 maxHops 10
+par SmartBinNetwork.CSE_mn_2 delayTime 0
+scalar SmartBinNetwork.CSE_mn_2 throughput:last nan
+attr recordingmode last
+attr source packet_size
+attr title "total_number_of_packets, last"
+par SmartBinNetwork.AE_sb_17 typename "\"AE\""
+par SmartBinNetwork.AE_sb_17 aeType 0
+par SmartBinNetwork.AE_sb_18 typename "\"AE\""
+par SmartBinNetwork.AE_sb_18 aeType 0
+par SmartBinNetwork.AE_sb_19 typename "\"AE\""
+par SmartBinNetwork.AE_sb_19 aeType 0
+par SmartBinNetwork.AE_sb_20 typename "\"AE\""
+par SmartBinNetwork.AE_sb_20 aeType 0
+par SmartBinNetwork.AE_sb_21 typename "\"AE\""
+par SmartBinNetwork.AE_sb_21 aeType 0
+par SmartBinNetwork.AE_sb_22 typename "\"AE\""
+par SmartBinNetwork.AE_sb_22 aeType 0
+par SmartBinNetwork.AE_sb_23 typename "\"AE\""
+par SmartBinNetwork.AE_sb_23 aeType 0
+par SmartBinNetwork.AE_sb_24 typename "\"AE\""
+par SmartBinNetwork.AE_sb_24 aeType 0
+par SmartBinNetwork.CSE_mn_3 typename "\"CSE\""
+par SmartBinNetwork.CSE_mn_3 notification_depth 8
+par SmartBinNetwork.CSE_mn_3 alpha 0
+par SmartBinNetwork.CSE_mn_3 beta 1
+par SmartBinNetwork.CSE_mn_3 delta 1
+par SmartBinNetwork.CSE_mn_3 gamma 1
+par SmartBinNetwork.CSE_mn_3 queryBufferTTL 2
+par SmartBinNetwork.CSE_mn_3 maxHops 10
+par SmartBinNetwork.CSE_mn_3 delayTime 0
+scalar SmartBinNetwork.CSE_mn_3 throughput:last nan
+attr recordingmode last
+attr source packet_size
+attr title "total_number_of_packets, last"
+par SmartBinNetwork.AE_sb_25 typename "\"AE\""
+par SmartBinNetwork.AE_sb_25 aeType 0
+par SmartBinNetwork.AE_sb_26 typename "\"AE\""
+par SmartBinNetwork.AE_sb_26 aeType 0
+par SmartBinNetwork.AE_sb_27 typename "\"AE\""
+par SmartBinNetwork.AE_sb_27 aeType 0
+par SmartBinNetwork.AE_sb_28 typename "\"AE\""
+par SmartBinNetwork.AE_sb_28 aeType 0
+par SmartBinNetwork.AE_sb_29 typename "\"AE\""
+par SmartBinNetwork.AE_sb_29 aeType 0
+par SmartBinNetwork.AE_sb_30 typename "\"AE\""
+par SmartBinNetwork.AE_sb_30 aeType 0
+par SmartBinNetwork.AE_sb_31 typename "\"AE\""
+par SmartBinNetwork.AE_sb_31 aeType 0
+par SmartBinNetwork.AE_sb_32 typename "\"AE\""
+par SmartBinNetwork.AE_sb_32 aeType 0
+par SmartBinNetwork.CSE_mn_4 typename "\"CSE\""
+par SmartBinNetwork.CSE_mn_4 notification_depth 8
+par SmartBinNetwork.CSE_mn_4 alpha 0
+par SmartBinNetwork.CSE_mn_4 beta 1
+par SmartBinNetwork.CSE_mn_4 delta 1
+par SmartBinNetwork.CSE_mn_4 gamma 1
+par SmartBinNetwork.CSE_mn_4 queryBufferTTL 2
+par SmartBinNetwork.CSE_mn_4 maxHops 10
+par SmartBinNetwork.CSE_mn_4 delayTime 0
+scalar SmartBinNetwork.CSE_mn_4 throughput:last nan
+attr recordingmode last
+attr source packet_size
+attr title "total_number_of_packets, last"
+par SmartBinNetwork.CSE_in_1 typename "\"CSE\""
+par SmartBinNetwork.CSE_in_1 notification_depth 50
+par SmartBinNetwork.CSE_in_1 alpha 0
+par SmartBinNetwork.CSE_in_1 beta 1
+par SmartBinNetwork.CSE_in_1 delta 4
+par SmartBinNetwork.CSE_in_1 gamma 1
+par SmartBinNetwork.CSE_in_1 queryBufferTTL 2
+par SmartBinNetwork.CSE_in_1 maxHops 10
+par SmartBinNetwork.CSE_in_1 delayTime 0
+scalar SmartBinNetwork.CSE_in_1 throughput:last nan
+attr recordingmode last
+attr source packet_size
+attr title "total_number_of_packets, last"
+par SmartBinNetwork.AE_st_1 typename "\"AE\""
+par SmartBinNetwork.AE_st_1 aeType 1
+par SmartBinNetwork.AE_st_2 typename "\"AE\""
+par SmartBinNetwork.AE_st_2 aeType 1
+par SmartBinNetwork.AE_st_3 typename "\"AE\""
+par SmartBinNetwork.AE_st_3 aeType 1
+par SmartBinNetwork.AE_st_4 typename "\"AE\""
+par SmartBinNetwork.AE_st_4 aeType 1
+par SmartBinNetwork.AE_sw_1 typename "\"AE\""
+par SmartBinNetwork.AE_sw_1 aeType 2
+par SmartBinNetwork typename "\"SmartBinNetwork\""
+
