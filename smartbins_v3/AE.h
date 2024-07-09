@@ -22,7 +22,7 @@ protected:
 
   // application specific
   virtual int numInitStages() const;
-  virtual void finish() override;
+  // virtual void finish() override;
   void sendAEMessage(int op_code);
   void registration();
   void deregistration();

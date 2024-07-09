@@ -63,21 +63,23 @@ void AE::handleMessage(cMessage *msg) {
     updateData();
   }
 
-  // when AE receive the response from CSE
-  EV << "AE receives a response" << endl;
-  discoveryMessage *responseMsg = check_and_cast<discoveryMessage *>(msg);
+  else {
+    // when AE receive the response from CSE
+    EV << "AE receives a response" << endl;
+    discoveryMessage *responseMsg = check_and_cast<discoveryMessage *>(msg);
 
-  if (responseMsg->getReturnCode() == ResultCode::SUCCESS) {
-    numOfFound++;
-    EV << "Resource of type " << responseMsg->getFeature_type()
-       << " found in URI " << responseMsg->getURI_init() << endl;
-  }
-  if (responseMsg->getReturnCode() == ResultCode::NOT_FOUND) {
-    EV << "Resource of type " << responseMsg->getFeature_type()
-       << " not found in URI " << responseMsg->getURI_init() << endl;
-  }
+    if (responseMsg->getReturnCode() == ResultCode::SUCCESS) {
+      numOfFound++;
+      EV << "Resource of type " << responseMsg->getFeature_type()
+         << " found in URI " << responseMsg->getURI_init() << endl;
+    }
+    if (responseMsg->getReturnCode() == ResultCode::NOT_FOUND) {
+      EV << "Resource of type " << responseMsg->getFeature_type()
+         << " not found in URI " << responseMsg->getURI_init() << endl;
+    }
 
-  delete responseMsg;
+    delete responseMsg;
+  }
 }
 
 void AE::registration() {
@@ -217,7 +219,7 @@ void AE::updateData() {
   scheduleAt(currentTime + 45 * 60, event);
 }
 
-void AE::finish() {
-  EV << "The number of requested Resources are found is: " << numOfFound
-     << endl;
-}
+// void AE::finish() {
+//   EV << "The number of requested Resources are found is: " << numOfFound
+//      << endl;
+// }
