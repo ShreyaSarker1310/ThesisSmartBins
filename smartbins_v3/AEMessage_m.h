@@ -23,6 +23,7 @@ class AEMessage;
  * message AEMessage
  * {
  *     int queryID;
+ *     int updateID;
  * 
  *     int URI;  // this is the unique identifer of the AE message
  * 
@@ -40,6 +41,7 @@ class AEMessage;
  *                 // REPLY (AE to CSE: AE reply to the CSE with a value normally in data) value = 6
  *                 // RESPONSE (AE to CSE: AE reply to the CSE with a value normally in data) value = 7
  *                 // NOTIFY (between CSE to notify modifications in route tables) value = 8
+ *                 // SUBSCRIBE (AE to CSE: AE subscribe to feature_type in CSE) value = 9
  * }
  * </pre>
  */
@@ -47,6 +49,7 @@ class AEMessage : public ::omnetpp::cMessage
 {
   protected:
     int queryID = 0;
+    int updateID = 0;
     int URI = 0;
     omnetpp::opp_string feature_type;
     int data = 0;
@@ -69,6 +72,9 @@ class AEMessage : public ::omnetpp::cMessage
 
     virtual int getQueryID() const;
     virtual void setQueryID(int queryID);
+
+    virtual int getUpdateID() const;
+    virtual void setUpdateID(int updateID);
 
     virtual int getURI() const;
     virtual void setURI(int URI);

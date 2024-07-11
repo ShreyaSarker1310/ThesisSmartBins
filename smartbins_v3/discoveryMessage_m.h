@@ -61,6 +61,11 @@ class discoveryMessage;
  *     DBresult dbResult;  // this is the result obtained when looking in the local database
  * 
  *     GateVector gateVector;
+ * 
+ * 
+ *     // realted to UPDATE
+ *     int updateID; // ID assigned to UPDATE
+ *     int data;
  * }
  * </pre>
  */
@@ -79,6 +84,8 @@ class discoveryMessage : public ::omnetpp::cMessage
     int initialGateIndex = 0;
     DBresult dbResult;
     GateVector gateVector;
+    int updateID = 0;
+    int data = 0;
 
   private:
     void copy(const discoveryMessage& other);
@@ -132,6 +139,12 @@ class discoveryMessage : public ::omnetpp::cMessage
     virtual const GateVector& getGateVector() const;
     virtual GateVector& getGateVectorForUpdate() { return const_cast<GateVector&>(const_cast<discoveryMessage*>(this)->getGateVector());}
     virtual void setGateVector(const GateVector& gateVector);
+
+    virtual int getUpdateID() const;
+    virtual void setUpdateID(int updateID);
+
+    virtual int getData() const;
+    virtual void setData(int data);
 };
 
 inline void doParsimPacking(omnetpp::cCommBuffer *b, const discoveryMessage& obj) {obj.parsimPack(b);}

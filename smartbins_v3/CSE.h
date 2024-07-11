@@ -19,6 +19,7 @@ public:
   virtual ~CSE();
 
   RoutingTable SemanticRoutingTable;
+  SubscribeTable SubscribersTable;
 
 protected:
   // default omnet methods
@@ -32,6 +33,7 @@ private:
   discoveryMessage *ResMsg;
   discoveryMessage *queryMsg;
   discoveryMessage *NotifMsg;
+  discoveryMessage *updateMsg;
 
   int notif;
   bool seenQuery(discoveryMessage *msg);
@@ -50,6 +52,7 @@ private:
   simtime_t queryBufferTTL;
   simtime_t delay;
   std::map<queryKey, int64_t> processedQueries;
+  std::map<queryKey, int64_t> processedUpdates;
 
   // application specific for exploring and updating the local database
   URI DBLookup(discoveryMessage *msg);
@@ -62,7 +65,6 @@ private:
   void cancelationAndNotification(AEMessage *msg);
   void registrationAndNotification(AEMessage *msg);
   void saveAEData();
-  RoutingEntry mustGetRoutingEntry(std::string feature_type);
   void registerAE(std::string feature_type, URI uri, int data);
   void deregisterAE(std::string feature_type, URI uri);
   void updatingRoutingTableAndNotify(discoveryMessage *msg);
@@ -81,6 +83,16 @@ private:
   void processQuery(discoveryMessage *msg);
   void returnResponse(discoveryMessage *msg);
   void saveAEData(std::string feature_type, URI uri, int data);
+
+  // UPDATE handling
+  void updateData(AEMessage *msg);
+  void localSubscriberLookup(AEMessage *msg);
+  void generateUpdateMessage(AEMessage *msg);
+  void processUpdate(discoveryMessage *msg);
+  void handleUpdate(discoveryMessage *msg);
+  bool seenUpdate(discoveryMessage *msg);
+  URI SubscriberLookup(discoveryMessage *msg);
+  void registerSubscriber(AEMessage *msg);
 };
 
 Define_Module(CSE);

@@ -41,4 +41,9 @@ message discoveryMessage{
   DBresult dbResult;  // this is the result obtained when looking in the local database
 
   GateVector gateVector;
+
+
+  // realted to UPDATE
+  int updateID; // ID assigned to UPDATE
+  int data;
 }

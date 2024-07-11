@@ -1,5 +1,6 @@
 #include "CSE.h"
 #include "declarative.h"
+#include "discoveryMessage_m.h"
 #include "types.h"
 #include "utils.h"
 
@@ -49,6 +50,7 @@ void CSE::handleMessage(cMessage *msg) {
  * REGISTRATION
  * CANCELLATION
  * QUERY
+ * UPDATE
  *
  */
 void CSE::handleAEMessage(cMessage *msg) {
@@ -73,36 +75,19 @@ void CSE::handleAEMessage(cMessage *msg) {
     break;
   }
   case UPDATE: {
+    updateData(aeMsg);
+    localSubscriberLookup(aeMsg);
+    generateUpdateMessage(aeMsg);
+    break;
+  }
+  case SUBSCRIBE: {
+    registerSubscriber(aeMsg);
     break;
   }
   default:
     break;
   }
   delete aeMsg;
-}
-
-/*
- * saveAEData
- *
- * saveAEData is for saving AE data into CSE local database
- *
- */
-void CSE::saveAEData(std::string feature_type, URI uri, int data) {
-
-  if (SemanticRoutingTable.find(feature_type) != SemanticRoutingTable.end()) {
-    if (SemanticRoutingTable[feature_type].database.find(uri) !=
-        SemanticRoutingTable[feature_type].database.end()) {
-      SemanticRoutingTable[feature_type].database[uri] = data;
-      EV << "AE which URI " << uri << " value " << data
-         << " is saved to local database" << endl;
-    } else {
-      EV << "Cannot find AE with URI " << uri << "in the local database"
-         << endl;
-    }
-  } else {
-    EV << "Cannot find Resource which type is " << feature_type
-       << "in the local database" << endl;
-  }
 }
 
 /*
@@ -501,6 +486,20 @@ void CSE::handleDiscoveryMessage(cMessage *msg) {
     handleQuery(discoveryMsg);
     break;
   }
+  case UPDATE: {
+    EV << "Message is an update" << endl;
+
+    std::vector<cGate *> tempGateVector;
+    tempGateVector = discoveryMsg->getGateVector();
+    tempGateVector.push_back(msg->getArrivalGate()->getOtherHalf());
+    discoveryMsg->setGateVector(tempGateVector);
+    EV << "A new gate is added = " << tempGateVector.back()->getFullName()
+       << endl;
+    tempGateVector.clear();
+
+    handleUpdate(discoveryMsg);
+    break;
+  }
   }
 
   delete discoveryMsg;
@@ -706,4 +705,239 @@ void CSE::generateResponseMessage(discoveryMessage *msg, ResultCode result) {
   responseMsg->setURI_init(this->Uri);
 
   handleDiscoveryMessage(responseMsg);
+}
+
+/*
+ * updateData
+ *
+ * updateData is used to update value from AE to local database
+ *
+ */
+void CSE::updateData(AEMessage *msg) {
+  // Extract
+  // feature_type;
+  // URI;
+  // data;
+  // from the AEMessage
+
+  std::string feature_type = msg->getFeature_type();
+  URI uri = msg->getURI();
+  int data = msg->getData();
+
+  bubble(feature_type.c_str());
+
+  saveAEData(feature_type, uri, data);
+}
+
+/*
+ * saveAEData
+ *
+ * saveAEData is for saving AE data into CSE local database
+ *
+ */
+void CSE::saveAEData(std::string feature_type, URI uri, int data) {
+
+  if (SemanticRoutingTable.find(feature_type) != SemanticRoutingTable.end()) {
+    if (SemanticRoutingTable[feature_type].database.find(uri) !=
+        SemanticRoutingTable[feature_type].database.end()) {
+      SemanticRoutingTable[feature_type].database[uri] = data;
+      EV << "IN CSE: AE which URI " << uri << " value " << data
+         << " is saved to local database" << endl;
+    } else {
+      EV << "IN CSE: Cannot find AE with URI " << uri << "in the local database"
+         << endl;
+    }
+  } else {
+    EV << "IN CSE: Cannot find Resource which type is " << feature_type
+       << "in the local database" << endl;
+  }
+}
+
+/*
+ * localSubscriberLookup
+ *
+ * check subscribers in local database
+ *
+ */
+void CSE::localSubscriberLookup(AEMessage *msg) {
+  auto feature_type = msg->getFeature_type();
+
+  updateMsg = new discoveryMessage("UPDATE");
+  updateMsg->setURI_init(msg->getURI());
+  updateMsg->setFeature_type(msg->getFeature_type());
+  updateMsg->setOp_code(UPDATE);
+  updateMsg->setUpdateID(msg->getUpdateID());
+  updateMsg->setData(msg->getData());
+
+  auto it = SubscribersTable.find(feature_type);
+  if (it != SubscribersTable.end()) {
+    if (!it->second.subscribers.empty()) {
+      for (auto const &[id, gate] : it->second.subscribers) {
+        send(updateMsg, gate);
+      }
+    }
+
+    auto localresponseMsg = generateMessage(RESPONSE);
+    localresponseMsg->setDirection(NODIR);
+    localresponseMsg->setFeature_type(feature_type);
+    localresponseMsg->setURI_init(getId());
+    localresponseMsg->setReturnCode(ResultCode::SUCCESS);
+    send(localresponseMsg, msg->getArrivalGate()->getOtherHalf()->getId());
+    return;
+  } else {
+    auto localresponseMsg = generateMessage(RESPONSE);
+    localresponseMsg->setDirection(NODIR);
+    localresponseMsg->setFeature_type(feature_type);
+    localresponseMsg->setURI_init(getId());
+    localresponseMsg->setReturnCode(ResultCode::NOT_FOUND);
+    send(localresponseMsg, msg->getArrivalGate()->getOtherHalf()->getId());
+    return;
+  }
+}
+
+/*
+ * generateUpdateMessage
+ *
+ * generateUpdateMessage is used to generate a update message
+ *
+ */
+void CSE::generateUpdateMessage(AEMessage *msg) {
+  // the following data should not be changed during routing between CSEs
+  updateMsg = new discoveryMessage("UPDATE");
+  updateMsg->setURI_init(msg->getURI());
+  updateMsg->setFeature_type(msg->getFeature_type());
+  updateMsg->setOp_code(UPDATE);
+  updateMsg->setUpdateID(msg->getUpdateID());
+  updateMsg->setData(msg->getData());
+
+  // the following data may change during routing between CSEs
+  updateMsg->setHopCount(maxHops);
+  std::vector<cGate *> gateVector;
+  gateVector.push_back(msg->getArrivalGate()->getOtherHalf());
+  updateMsg->setGateVector(gateVector);
+  gateVector.clear();
+
+  // send update message to process update in order to forward to the other CSE
+  // in valley-free manner.
+  processUpdate(updateMsg);
+}
+
+/*
+ * processUpdate
+ *
+ * processUpdate is used to route update to other CSEs
+ *
+ */
+void CSE::processUpdate(discoveryMessage *msg) {
+  EV << "The Message is an update " << endl;
+
+  if (msg->getHopCount() <= 0) {
+    bubble("TTL expired");
+    // Respond to the URI_init that the discovery ends
+    msg->setOp_code(RESPONSE);
+
+    EV << "TTL expired so we generate a response message" << endl;
+    generateResponseMessage(msg, ResultCode::NOT_FOUND);
+    return;
+  }
+
+  // Decreasing the hop count
+  msg->setHopCount(msg->getHopCount() - 1);
+  fallbackRouteQuery(msg);
+}
+
+/*
+ * handleUpdate
+ *
+ * handleUpdate is used to handle message type UPDATE.
+ * It memorizes distinct updates and omit duplicate ones.
+ *
+ */
+void CSE::handleUpdate(discoveryMessage *msg) {
+  auto cse = msg->getURI_route();
+  std::string inputGate = msg->getArrivalGate()->getBaseName();
+  Gates[cse] = std::make_pair(inputGate, msg->getArrivalGate()->getIndex());
+
+  if (seenUpdate(msg)) {
+    bubble("Dropping seen update");
+    return;
+  }
+
+  int64_t ttl = SimTime(queryBufferTTL).inUnit(SimTimeUnit::SIMTIME_S);
+  ttl = ttl + msg->getArrivalTime().inUnit(SimTimeUnit::SIMTIME_S);
+  queryKey key;
+  key.first = msg->getURI_init();
+  key.second = msg->getUpdateID();
+
+  processedUpdates[key] = ttl;
+
+  auto res = SubscriberLookup(msg);
+  // If we find the index "NOT_FOUND" in the map, it means that the feature is
+  // not present in the database.
+  if (res == NOT_FOUND) {
+    processUpdate(msg);
+    return;
+  }
+
+  EV << "Subscriber Lookup Successful" << endl;
+
+  generateResponseMessage(msg);
+}
+
+/*
+ * seenUpdate
+ *
+ * seenUpdate is used to check if the update processed previously or not.
+ *
+ */
+bool CSE::seenUpdate(discoveryMessage *msg) {
+  std::map<queryKey, int64_t> newProcessed(processedUpdates);
+  for (auto record : newProcessed) {
+    if (record.second < simTime().inUnit(SimTimeUnit::SIMTIME_S)) {
+      processedUpdates.erase(record.first);
+    }
+  }
+
+  queryKey key;
+  key.second = msg->getUpdateID();
+  key.first = msg->getURI_init();
+
+  if (processedUpdates.find(key) != processedUpdates.end()) {
+    return true;
+  }
+
+  return false;
+}
+
+URI CSE::SubscriberLookup(discoveryMessage *msg) {
+  auto feature_type = msg->getFeature_type();
+
+  auto it = SubscribersTable.find(feature_type);
+  if (it != SubscribersTable.end()) {
+    if (!it->second.subscribers.empty()) {
+      EV << "Found Subscribers" << endl;
+      for (auto const &[id, gate] : it->second.subscribers) {
+        send(msg->dup(), gate);
+      }
+    }
+    return 0;
+  } else {
+    return NOT_FOUND;
+  }
+}
+
+void CSE::registerSubscriber(AEMessage *msg) {
+  // Extract
+  // the feature_type;
+  // URI;
+  // data
+  // from the AEMessage
+
+  std::string feature_type = msg->getFeature_type();
+  URI uri = msg->getURI();
+  cGate *arrivalGate = msg->getArrivalGate()->getOtherHalf();
+
+  SubscribersTable[feature_type].subscribers[uri] = arrivalGate;
+  EV << "Register subscribers with URI " << uri << "for " << feature_type
+     << endl;
 }

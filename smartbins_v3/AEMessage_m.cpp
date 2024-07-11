@@ -176,6 +176,7 @@ AEMessage& AEMessage::operator=(const AEMessage& other)
 void AEMessage::copy(const AEMessage& other)
 {
     this->queryID = other.queryID;
+    this->updateID = other.updateID;
     this->URI = other.URI;
     this->feature_type = other.feature_type;
     this->data = other.data;
@@ -186,6 +187,7 @@ void AEMessage::parsimPack(omnetpp::cCommBuffer *b) const
 {
     ::omnetpp::cMessage::parsimPack(b);
     doParsimPacking(b,this->queryID);
+    doParsimPacking(b,this->updateID);
     doParsimPacking(b,this->URI);
     doParsimPacking(b,this->feature_type);
     doParsimPacking(b,this->data);
@@ -196,6 +198,7 @@ void AEMessage::parsimUnpack(omnetpp::cCommBuffer *b)
 {
     ::omnetpp::cMessage::parsimUnpack(b);
     doParsimUnpacking(b,this->queryID);
+    doParsimUnpacking(b,this->updateID);
     doParsimUnpacking(b,this->URI);
     doParsimUnpacking(b,this->feature_type);
     doParsimUnpacking(b,this->data);
@@ -210,6 +213,16 @@ int AEMessage::getQueryID() const
 void AEMessage::setQueryID(int queryID)
 {
     this->queryID = queryID;
+}
+
+int AEMessage::getUpdateID() const
+{
+    return this->updateID;
+}
+
+void AEMessage::setUpdateID(int updateID)
+{
+    this->updateID = updateID;
 }
 
 int AEMessage::getURI() const
@@ -258,6 +271,7 @@ class AEMessageDescriptor : public omnetpp::cClassDescriptor
     mutable const char **propertyNames;
     enum FieldConstants {
         FIELD_queryID,
+        FIELD_updateID,
         FIELD_URI,
         FIELD_feature_type,
         FIELD_data,
@@ -328,7 +342,7 @@ const char *AEMessageDescriptor::getProperty(const char *propertyName) const
 int AEMessageDescriptor::getFieldCount() const
 {
     omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
-    return base ? 5+base->getFieldCount() : 5;
+    return base ? 6+base->getFieldCount() : 6;
 }
 
 unsigned int AEMessageDescriptor::getFieldTypeFlags(int field) const
@@ -341,12 +355,13 @@ unsigned int AEMessageDescriptor::getFieldTypeFlags(int field) const
     }
     static unsigned int fieldTypeFlags[] = {
         FD_ISEDITABLE,    // FIELD_queryID
+        FD_ISEDITABLE,    // FIELD_updateID
         FD_ISEDITABLE,    // FIELD_URI
         FD_ISEDITABLE,    // FIELD_feature_type
         FD_ISEDITABLE,    // FIELD_data
         FD_ISEDITABLE,    // FIELD_op_code
     };
-    return (field >= 0 && field < 5) ? fieldTypeFlags[field] : 0;
+    return (field >= 0 && field < 6) ? fieldTypeFlags[field] : 0;
 }
 
 const char *AEMessageDescriptor::getFieldName(int field) const
@@ -359,12 +374,13 @@ const char *AEMessageDescriptor::getFieldName(int field) const
     }
     static const char *fieldNames[] = {
         "queryID",
+        "updateID",
         "URI",
         "feature_type",
         "data",
         "op_code",
     };
-    return (field >= 0 && field < 5) ? fieldNames[field] : nullptr;
+    return (field >= 0 && field < 6) ? fieldNames[field] : nullptr;
 }
 
 int AEMessageDescriptor::findField(const char *fieldName) const
@@ -372,10 +388,11 @@ int AEMessageDescriptor::findField(const char *fieldName) const
     omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
     int baseIndex = base ? base->getFieldCount() : 0;
     if (strcmp(fieldName, "queryID") == 0) return baseIndex + 0;
-    if (strcmp(fieldName, "URI") == 0) return baseIndex + 1;
-    if (strcmp(fieldName, "feature_type") == 0) return baseIndex + 2;
-    if (strcmp(fieldName, "data") == 0) return baseIndex + 3;
-    if (strcmp(fieldName, "op_code") == 0) return baseIndex + 4;
+    if (strcmp(fieldName, "updateID") == 0) return baseIndex + 1;
+    if (strcmp(fieldName, "URI") == 0) return baseIndex + 2;
+    if (strcmp(fieldName, "feature_type") == 0) return baseIndex + 3;
+    if (strcmp(fieldName, "data") == 0) return baseIndex + 4;
+    if (strcmp(fieldName, "op_code") == 0) return baseIndex + 5;
     return base ? base->findField(fieldName) : -1;
 }
 
@@ -389,12 +406,13 @@ const char *AEMessageDescriptor::getFieldTypeString(int field) const
     }
     static const char *fieldTypeStrings[] = {
         "int",    // FIELD_queryID
+        "int",    // FIELD_updateID
         "int",    // FIELD_URI
         "string",    // FIELD_feature_type
         "int",    // FIELD_data
         "int",    // FIELD_op_code
     };
-    return (field >= 0 && field < 5) ? fieldTypeStrings[field] : nullptr;
+    return (field >= 0 && field < 6) ? fieldTypeStrings[field] : nullptr;
 }
 
 const char **AEMessageDescriptor::getFieldPropertyNames(int field) const
@@ -478,6 +496,7 @@ std::string AEMessageDescriptor::getFieldValueAsString(omnetpp::any_ptr object, 
     AEMessage *pp = omnetpp::fromAnyPtr<AEMessage>(object); (void)pp;
     switch (field) {
         case FIELD_queryID: return long2string(pp->getQueryID());
+        case FIELD_updateID: return long2string(pp->getUpdateID());
         case FIELD_URI: return long2string(pp->getURI());
         case FIELD_feature_type: return oppstring2string(pp->getFeature_type());
         case FIELD_data: return long2string(pp->getData());
@@ -499,6 +518,7 @@ void AEMessageDescriptor::setFieldValueAsString(omnetpp::any_ptr object, int fie
     AEMessage *pp = omnetpp::fromAnyPtr<AEMessage>(object); (void)pp;
     switch (field) {
         case FIELD_queryID: pp->setQueryID(string2long(value)); break;
+        case FIELD_updateID: pp->setUpdateID(string2long(value)); break;
         case FIELD_URI: pp->setURI(string2long(value)); break;
         case FIELD_feature_type: pp->setFeature_type((value)); break;
         case FIELD_data: pp->setData(string2long(value)); break;
@@ -518,6 +538,7 @@ omnetpp::cValue AEMessageDescriptor::getFieldValue(omnetpp::any_ptr object, int 
     AEMessage *pp = omnetpp::fromAnyPtr<AEMessage>(object); (void)pp;
     switch (field) {
         case FIELD_queryID: return pp->getQueryID();
+        case FIELD_updateID: return pp->getUpdateID();
         case FIELD_URI: return pp->getURI();
         case FIELD_feature_type: return pp->getFeature_type();
         case FIELD_data: return pp->getData();
@@ -539,6 +560,7 @@ void AEMessageDescriptor::setFieldValue(omnetpp::any_ptr object, int field, int 
     AEMessage *pp = omnetpp::fromAnyPtr<AEMessage>(object); (void)pp;
     switch (field) {
         case FIELD_queryID: pp->setQueryID(omnetpp::checked_int_cast<int>(value.intValue())); break;
+        case FIELD_updateID: pp->setUpdateID(omnetpp::checked_int_cast<int>(value.intValue())); break;
         case FIELD_URI: pp->setURI(omnetpp::checked_int_cast<int>(value.intValue())); break;
         case FIELD_feature_type: pp->setFeature_type(value.stringValue()); break;
         case FIELD_data: pp->setData(omnetpp::checked_int_cast<int>(value.intValue())); break;

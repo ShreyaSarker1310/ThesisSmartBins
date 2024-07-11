@@ -3,6 +3,7 @@
 #define AE_H_
 
 #include "AEMessage_m.h"
+#include "types.h"
 #include "utils.h"
 #include <omnetpp.h>
 #include <stdio.h>
@@ -16,6 +17,8 @@ public:
   AE();
   virtual ~AE();
 
+  BinLevelTable BinLevelDatabase;
+
 protected:
   virtual void initialize(int stage) override;
   virtual void handleMessage(cMessage *msg) override;
@@ -28,6 +31,7 @@ protected:
   void deregistration();
   void sendUpdate();
   void sendQuery();
+  void sendSubscribe();
   void updateData();
 
   // smartbin specific
@@ -38,11 +42,13 @@ private:
   AEMessage *regMsg;
   AEMessage *queryMsg;
   AEMessage *updateMsg;
+  AEMessage *subscribeMsg;
 
   cMessage *event = nullptr;
 
   long numOfFound;
   int queryIndex;
+  int updateIndex;
   int URI;
   int data;
   int maxHop;

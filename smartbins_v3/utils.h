@@ -15,7 +15,8 @@ enum OpCode {
   GET = 5,
   REPLY = 6,
   RESPONSE = 7,
-  NOTIFY = 8
+  NOTIFY = 8,
+  SUBSCRIBE = 9
 };
 
 #endif

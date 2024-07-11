@@ -1,6 +1,7 @@
 message AEMessage
 {
   int queryID;
+  int updateID;
 
   int URI;  // this is the unique identifer of the AE message
   
@@ -18,4 +19,5 @@ message AEMessage
                 // REPLY (AE to CSE: AE reply to the CSE with a value normally in data) value = 6
                 // RESPONSE (AE to CSE: AE reply to the CSE with a value normally in data) value = 7
                 // NOTIFY (between CSE to notify modifications in route tables) value = 8
+                // SUBSCRIBE (AE to CSE: AE subscribe to feature_type in CSE) value = 9
 }

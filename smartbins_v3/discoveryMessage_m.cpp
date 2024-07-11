@@ -757,6 +757,8 @@ void discoveryMessage::copy(const discoveryMessage& other)
     this->initialGateIndex = other.initialGateIndex;
     this->dbResult = other.dbResult;
     this->gateVector = other.gateVector;
+    this->updateID = other.updateID;
+    this->data = other.data;
 }
 
 void discoveryMessage::parsimPack(omnetpp::cCommBuffer *b) const
@@ -774,6 +776,8 @@ void discoveryMessage::parsimPack(omnetpp::cCommBuffer *b) const
     doParsimPacking(b,this->initialGateIndex);
     doParsimPacking(b,this->dbResult);
     doParsimPacking(b,this->gateVector);
+    doParsimPacking(b,this->updateID);
+    doParsimPacking(b,this->data);
 }
 
 void discoveryMessage::parsimUnpack(omnetpp::cCommBuffer *b)
@@ -791,6 +795,8 @@ void discoveryMessage::parsimUnpack(omnetpp::cCommBuffer *b)
     doParsimUnpacking(b,this->initialGateIndex);
     doParsimUnpacking(b,this->dbResult);
     doParsimUnpacking(b,this->gateVector);
+    doParsimUnpacking(b,this->updateID);
+    doParsimUnpacking(b,this->data);
 }
 
 int discoveryMessage::getQueryID() const
@@ -913,6 +919,26 @@ void discoveryMessage::setGateVector(const GateVector& gateVector)
     this->gateVector = gateVector;
 }
 
+int discoveryMessage::getUpdateID() const
+{
+    return this->updateID;
+}
+
+void discoveryMessage::setUpdateID(int updateID)
+{
+    this->updateID = updateID;
+}
+
+int discoveryMessage::getData() const
+{
+    return this->data;
+}
+
+void discoveryMessage::setData(int data)
+{
+    this->data = data;
+}
+
 class discoveryMessageDescriptor : public omnetpp::cClassDescriptor
 {
   private:
@@ -930,6 +956,8 @@ class discoveryMessageDescriptor : public omnetpp::cClassDescriptor
         FIELD_initialGateIndex,
         FIELD_dbResult,
         FIELD_gateVector,
+        FIELD_updateID,
+        FIELD_data,
     };
   public:
     discoveryMessageDescriptor();
@@ -996,7 +1024,7 @@ const char *discoveryMessageDescriptor::getProperty(const char *propertyName) co
 int discoveryMessageDescriptor::getFieldCount() const
 {
     omnetpp::cClassDescriptor *base = getBaseClassDescriptor();
-    return base ? 12+base->getFieldCount() : 12;
+    return base ? 14+base->getFieldCount() : 14;
 }
 
 unsigned int discoveryMessageDescriptor::getFieldTypeFlags(int field) const
@@ -1020,8 +1048,10 @@ unsigned int discoveryMessageDescriptor::getFieldTypeFlags(int field) const
         FD_ISEDITABLE,    // FIELD_initialGateIndex
         FD_ISCOMPOUND,    // FIELD_dbResult
         FD_ISCOMPOUND,    // FIELD_gateVector
+        FD_ISEDITABLE,    // FIELD_updateID
+        FD_ISEDITABLE,    // FIELD_data
     };
-    return (field >= 0 && field < 12) ? fieldTypeFlags[field] : 0;
+    return (field >= 0 && field < 14) ? fieldTypeFlags[field] : 0;
 }
 
 const char *discoveryMessageDescriptor::getFieldName(int field) const
@@ -1045,8 +1075,10 @@ const char *discoveryMessageDescriptor::getFieldName(int field) const
         "initialGateIndex",
         "dbResult",
         "gateVector",
+        "updateID",
+        "data",
     };
-    return (field >= 0 && field < 12) ? fieldNames[field] : nullptr;
+    return (field >= 0 && field < 14) ? fieldNames[field] : nullptr;
 }
 
 int discoveryMessageDescriptor::findField(const char *fieldName) const
@@ -1065,6 +1097,8 @@ int discoveryMessageDescriptor::findField(const char *fieldName) const
     if (strcmp(fieldName, "initialGateIndex") == 0) return baseIndex + 9;
     if (strcmp(fieldName, "dbResult") == 0) return baseIndex + 10;
     if (strcmp(fieldName, "gateVector") == 0) return baseIndex + 11;
+    if (strcmp(fieldName, "updateID") == 0) return baseIndex + 12;
+    if (strcmp(fieldName, "data") == 0) return baseIndex + 13;
     return base ? base->findField(fieldName) : -1;
 }
 
@@ -1089,8 +1123,10 @@ const char *discoveryMessageDescriptor::getFieldTypeString(int field) const
         "int",    // FIELD_initialGateIndex
         "DBresult",    // FIELD_dbResult
         "GateVector",    // FIELD_gateVector
+        "int",    // FIELD_updateID
+        "int",    // FIELD_data
     };
-    return (field >= 0 && field < 12) ? fieldTypeStrings[field] : nullptr;
+    return (field >= 0 && field < 14) ? fieldTypeStrings[field] : nullptr;
 }
 
 const char **discoveryMessageDescriptor::getFieldPropertyNames(int field) const
@@ -1185,6 +1221,8 @@ std::string discoveryMessageDescriptor::getFieldValueAsString(omnetpp::any_ptr o
         case FIELD_initialGateIndex: return long2string(pp->getInitialGateIndex());
         case FIELD_dbResult: return "";
         case FIELD_gateVector: return "";
+        case FIELD_updateID: return long2string(pp->getUpdateID());
+        case FIELD_data: return long2string(pp->getData());
         default: return "";
     }
 }
@@ -1211,6 +1249,8 @@ void discoveryMessageDescriptor::setFieldValueAsString(omnetpp::any_ptr object, 
         case FIELD_hopCount: pp->setHopCount(string2long(value)); break;
         case FIELD_direction: pp->setDirection(string2long(value)); break;
         case FIELD_initialGateIndex: pp->setInitialGateIndex(string2long(value)); break;
+        case FIELD_updateID: pp->setUpdateID(string2long(value)); break;
+        case FIELD_data: pp->setData(string2long(value)); break;
         default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'discoveryMessage'", field);
     }
 }
@@ -1237,6 +1277,8 @@ omnetpp::cValue discoveryMessageDescriptor::getFieldValue(omnetpp::any_ptr objec
         case FIELD_initialGateIndex: return pp->getInitialGateIndex();
         case FIELD_dbResult: return omnetpp::toAnyPtr(&pp->getDbResult()); break;
         case FIELD_gateVector: return omnetpp::toAnyPtr(&pp->getGateVector()); break;
+        case FIELD_updateID: return pp->getUpdateID();
+        case FIELD_data: return pp->getData();
         default: throw omnetpp::cRuntimeError("Cannot return field %d of class 'discoveryMessage' as cValue -- field index out of range?", field);
     }
 }
@@ -1263,6 +1305,8 @@ void discoveryMessageDescriptor::setFieldValue(omnetpp::any_ptr object, int fiel
         case FIELD_hopCount: pp->setHopCount(omnetpp::checked_int_cast<int>(value.intValue())); break;
         case FIELD_direction: pp->setDirection(omnetpp::checked_int_cast<int>(value.intValue())); break;
         case FIELD_initialGateIndex: pp->setInitialGateIndex(omnetpp::checked_int_cast<int>(value.intValue())); break;
+        case FIELD_updateID: pp->setUpdateID(omnetpp::checked_int_cast<int>(value.intValue())); break;
+        case FIELD_data: pp->setData(omnetpp::checked_int_cast<int>(value.intValue())); break;
         default: throw omnetpp::cRuntimeError("Cannot set field %d of class 'discoveryMessage'", field);
     }
 }

@@ -1,4 +1,5 @@
 #include "AE.h"
+#include "AEMessage_m.h"
 #include "discoveryMessage_m.h"
 #include "types.h"
 #include "utils.h"
@@ -36,7 +37,7 @@ void AE::initialize(int stage) {
       registration();
       break;
     case 1:
-      sendQuery();
+      // sendQuery();
       break;
     default:
       EV_FATAL << "Unknown initialization phase!" << endl;
@@ -48,7 +49,8 @@ void AE::initialize(int stage) {
       registration();
       break;
     case 1:
-      sendQuery();
+      // sendQuery();
+      sendSubscribe();
       break;
     default:
       EV_FATAL << "Unknown initialization phase!" << endl;
@@ -68,14 +70,41 @@ void AE::handleMessage(cMessage *msg) {
     EV << "AE receives a response" << endl;
     discoveryMessage *responseMsg = check_and_cast<discoveryMessage *>(msg);
 
-    if (responseMsg->getReturnCode() == ResultCode::SUCCESS) {
-      numOfFound++;
-      EV << "Resource of type " << responseMsg->getFeature_type()
-         << " found in URI " << responseMsg->getURI_init() << endl;
+    int op_code = responseMsg->getOp_code();
+
+    if (op_code == RESPONSE) {
+      if (responseMsg->getReturnCode() == ResultCode::SUCCESS) {
+        numOfFound++;
+        EV << "Resource of type " << responseMsg->getFeature_type()
+           << " found in URI " << responseMsg->getURI_init() << endl;
+      }
+      if (responseMsg->getReturnCode() == ResultCode::NOT_FOUND) {
+        EV << "Resource of type " << responseMsg->getFeature_type()
+           << " not found in URI " << responseMsg->getURI_init() << endl;
+      }
     }
-    if (responseMsg->getReturnCode() == ResultCode::NOT_FOUND) {
-      EV << "Resource of type " << responseMsg->getFeature_type()
-         << " not found in URI " << responseMsg->getURI_init() << endl;
+
+    if (op_code == UPDATE) {
+      // Extract
+      // - URI of AE that sent UPDATE
+      // - feature_type
+      // - data
+      // from the discoveryMessage
+      int uri = responseMsg->getURI_init();
+      std::string featureTypes = responseMsg->getFeature_type();
+      int data = responseMsg->getData();
+
+      EV << "Receive UPDATE from AE with URI " << uri << ", data = " << data
+         << endl;
+
+      auto it = BinLevelDatabase.find(uri);
+      if (it != BinLevelDatabase.end()) {
+        EV << "Update existing level of bin with URI " << uri << endl;
+        it->second = data;
+      } else {
+        EV << "Insert new bin with URI " << uri << endl;
+        BinLevelDatabase[uri] = data;
+      }
     }
 
     delete responseMsg;
@@ -118,6 +147,16 @@ void AE::sendQuery() {
   sendAEMessage(QUERY);
 }
 
+void AE::sendSubscribe() {
+  URI = getId();
+
+  if (aeType == 2) {
+    feature_type = feature_types[0];
+    EV << "AE of URI " << URI << "want to subscribe " << feature_type << endl;
+    sendAEMessage(SUBSCRIBE);
+  }
+}
+
 void AE::sendUpdate() { URI = getId(); }
 
 void AE::sendAEMessage(int op_code) {
@@ -143,6 +182,7 @@ void AE::sendAEMessage(int op_code) {
   case QUERY: {
     queryMsg = new AEMessage("Q");
     queryMsg->setURI(URI);
+    queryMsg->setQueryID(queryIndex++);
     queryMsg->setFeature_type(query_feature_type.c_str());
     queryMsg->setOp_code(QUERY);
     send(queryMsg, "cse$o");
@@ -151,10 +191,20 @@ void AE::sendAEMessage(int op_code) {
   case UPDATE: {
     updateMsg = new AEMessage("U");
     updateMsg->setURI(URI);
+    updateMsg->setUpdateID(updateIndex++);
     updateMsg->setFeature_type(feature_type.c_str());
     updateMsg->setData(data);
     updateMsg->setOp_code(UPDATE);
     send(updateMsg, "cse$o");
+    break;
+  }
+  case SUBSCRIBE: {
+    subscribeMsg = new AEMessage("S");
+    subscribeMsg->setURI(URI);
+    subscribeMsg->setFeature_type(feature_type.c_str());
+    subscribeMsg->setData(data);
+    subscribeMsg->setOp_code(SUBSCRIBE);
+    send(subscribeMsg, "cse$o");
     break;
   }
   default:
@@ -209,7 +259,8 @@ void AE::updateData() {
   if (data < 100) {
     // calcuate waste amount relative to time
     data += (int)(amount * rate);
-    EV << "AE with URI " << URI << " data value updated to " << data << endl;
+    EV << "IN AE: AE with URI " << URI << " data value updated to " << data
+       << endl;
   }
 
   if (data > 80) {

@@ -51,4 +51,14 @@ typedef std::map<std::string, RoutingEntry> RoutingTable;
 
 typedef std::map<URI, std::pair<std::string, int>> GateMapping;
 
+struct SubscribeEntryStruct {
+  std::map<URI, cGate *> subscribers;
+};
+
+typedef struct SubscribeEntryStruct SubscribeEntry;
+
+typedef std::map<std::string, SubscribeEntry> SubscribeTable;
+
+typedef std::map<URI, int> BinLevelTable;
+
 #endif
